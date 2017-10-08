@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Pacifico');
+
 .dark-primary-color    { background: #0288D1; }
 .default-primary-color { background: #03A9F4; }
 .light-primary-color   { background: #B3E5FC; }
@@ -44,4 +46,12 @@
 
 .App-title {
   font-size: 1.5em;
+}
+
+.chatroom .chats{
+  box-sizing: border-box;
+  padding: 0 20px;
+  margin: 10px 0 0;
+  height: 510px;
+  overflow-y: scroll;
 }
