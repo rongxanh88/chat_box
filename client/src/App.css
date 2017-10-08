@@ -12,7 +12,7 @@
 .App {
   text-align: center;
   background-color: #B3E5FC;
-  height: 100vh;
+  height: 120vh;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -22,11 +22,8 @@
 .App-window {
   display: flex;
   flex-direction: column;
-  margin-top: 100px;
-  /* align-content: center; */
-
+  margin-top: 25px;
   width: 360px;
-  height: 600px;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 0 8px 0 rgba(0,0,0, 0.3);
@@ -51,7 +48,57 @@
 .chatroom .chats{
   box-sizing: border-box;
   padding: 0 20px;
-  margin: 10px 0 0;
+  margin: 0 0 0;
   height: 510px;
   overflow-y: scroll;
+  background-color: #FFC107;
+}
+
+.message {
+  background: rgba(255, 255, 255, 0.8);
+  position: relative;
+  padding: 5px 13px;
+  font-size: 14px;
+  border-radius: 10px;
+  list-style: none;
+  float: left;
+  clear: both;
+  margin: 10px 0;
+  max-width: 200px;
+}
+
+.input {
+  height: 40px;
+  width: 100%;
+  background: #0288D1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input_text {
+  background: rgba(255, 255, 255, 0.5);
+  outline: 0;
+  border: 2px solid #B3E5FC;
+  padding: 0 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-left: 10px;
+  height: 30px;
+  width: 270px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.input_submit {
+  background: transparent;
+  border: 1px solid #B3E5FC;
+  height: 30px;
+  width: 70px;
+  font-size: 14px;
+  box-sizing: border-box;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
