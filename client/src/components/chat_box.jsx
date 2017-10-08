@@ -7,6 +7,7 @@ class ChatBox extends Component {
     super(props)
 
     this.submitMessage = this.submitMessage.bind(this)
+    this.setChatHistory = this.setChatHistory.bind(this)
 
     this.state = {
       chatHistory: [
@@ -19,6 +20,15 @@ class ChatBox extends Component {
 
   submitMessage(e) {
     e.preventDefault()
+    const text = e.target.children[0].value
+    this.setChatHistory(text)
+    e.target.children[0].value = ""
+  }
+
+  setChatHistory(text) {
+    let current_history = this.state.chatHistory.slice()
+    current_history.push(text)
+    this.setState({ chatHistory: current_history })
   }
 
   render() {
