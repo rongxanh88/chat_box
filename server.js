@@ -25,6 +25,10 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     io.emit('usersConnected', io.engine.clientsCount);
   });
+
+  socket.on('newMessage', message => {
+    socket.broadcast.emit('message', message)
+  })
 });
 
 module.exports = server;

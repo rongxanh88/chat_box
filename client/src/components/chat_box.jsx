@@ -8,20 +8,22 @@ class ChatBox extends Component {
 
     this.submitMessage = this.submitMessage.bind(this)
     this.setChatHistory = this.setChatHistory.bind(this)
+    this.socketSend = this.socketSend.bind(this)
 
     this.state = {
-      chatHistory: [
-        "Hello! My name is Nate",
-        "Yo, what is up!",
-        "I am having a great Sunday!"
-      ]
+      chatHistory: []
     }
+
+    const socket = this.props.socket
+    socket.on('message', message => this.setChatHistory(message))
   }
 
   submitMessage(e) {
     e.preventDefault()
     const text = e.target.children[0].value
+
     this.setChatHistory(text)
+    this.socketSend(text)
     e.target.children[0].value = ""
   }
 
@@ -29,6 +31,11 @@ class ChatBox extends Component {
     let current_history = this.state.chatHistory.slice()
     current_history.push(text)
     this.setState({ chatHistory: current_history })
+  }
+
+  socketSend(text) {
+    const socket = this.props.socket
+    socket.emit('newMessage', text)
   }
 
   render() {

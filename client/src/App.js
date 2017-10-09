@@ -3,7 +3,7 @@ import './App.css';
 
 import ChatBox from './components/chat_box.jsx';
 import InfoBox from './components/info_box.jsx';
-import io from 'socket.io-client';;
+import io from 'socket.io-client';
 
 class App extends Component {
 
@@ -13,12 +13,13 @@ class App extends Component {
     this.componentDidMount = this.componentDidMount.bind(this)
     
     this.state = {
-      numUsers: 0
+      numUsers: 0,
+      socket: io.connect('http://localhost:3001')
     }
   }
 
   componentDidMount() {
-    const socket = io.connect('http://localhost:3001')
+    const socket = this.state.socket
 
     socket.on('usersConnected', count => {
       this.setState({numUsers: count})
@@ -32,7 +33,7 @@ class App extends Component {
           <header className="App-header">
             <h1 className="App-title">Watercooler</h1>
           </header>
-          <ChatBox />
+          <ChatBox socket={this.state.socket}/>
         </section>
         <InfoBox numUsers={this.state.numUsers} />
       </div>
