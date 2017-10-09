@@ -1,9 +1,9 @@
-const express    = require('express');
-const path       = require('path');
+const http    = require('http');
+const express = require('express');
+const app     = express();
+const path    = require('path');
+const port    = process.env.PORT || 3001;
 
-const app        = express();
-
-app.set('port', process.env.PORT || 3001);
 app.use(express.static('public'));
 
 app.locals.title = 'Watercooler';
@@ -12,10 +12,18 @@ app.get('/', (request, response) => {
   response.sendFile(path.join(__dirname + '/client/public/index.html'));
 });
 
-if (!module.parent) {
-  app.listen(app.get('port'), function() {
-    console.log(`${app.locals.title} is running on ${app.get('port')}.`);
-  });
-}
+const server = http.createServer(app)
+                   .listen(port, () => {
+                     console.log(`Listening on port ${port}.`);
+                   });
 
-module.exports = app;
+const io = require('socket.io')(server);
+
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
+
+module.exports = server;
