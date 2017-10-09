@@ -2,8 +2,29 @@ import React, { Component } from 'react';
 import './App.css';
 
 import ChatBox from './components/chat_box.jsx';
+import InfoBox from './components/info_box.jsx';
+import io from 'socket.io-client';;
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.componentDidMount = this.componentDidMount.bind(this)
+    
+    this.state = {
+      numUsers: 0
+    }
+  }
+
+  componentDidMount() {
+    const socket = io.connect('http://localhost:3001')
+
+    socket.on('usersConnected', count => {
+      this.setState({numUsers: count})
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -13,6 +34,7 @@ class App extends Component {
           </header>
           <ChatBox />
         </section>
+        <InfoBox numUsers={this.state.numUsers} />
       </div>
     );
   }

@@ -19,10 +19,11 @@ const server = http.createServer(app)
 
 const io = require('socket.io')(server);
 
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
+io.on('connection', (socket) => {
+  io.emit('usersConnected', io.engine.clientsCount);
+
+  socket.on('disconnect', () => {
+    io.emit('usersConnected', io.engine.clientsCount);
   });
 });
 
