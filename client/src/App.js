@@ -35,7 +35,7 @@ class App extends Component {
           </header>
           <ChatBox socket={this.state.socket}/>
         </section>
-        <InfoBox numUsers={this.state.numUsers} />
+        <InfoBox numUsers={this.state.numUsers} socket={this.state.socket}/>
       </div>
     );
   }

@@ -29,6 +29,10 @@ io.on('connection', (socket) => {
   socket.on('newMessage', message => {
     socket.broadcast.emit('message', message)
   })
+
+  socket.on('userTyping', socket_id => {
+    socket.broadcast.emit('userTyping', socket_id)
+  })
 });
 
 module.exports = server;
