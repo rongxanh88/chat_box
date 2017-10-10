@@ -14,7 +14,7 @@ class App extends Component {
     
     this.state = {
       numUsers: 0,
-      socket: io.connect('http://localhost:3001')
+      socket: io.connect('https://cires-watercooler.herokuapp.com/')
     }
   }
 

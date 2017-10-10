@@ -1,15 +1,17 @@
 const http    = require('http');
+const cors    = require('cors');
 const express = require('express');
 const app     = express();
 const path    = require('path');
 const port    = process.env.PORT || 3001;
 
-app.use(express.static('public'));
+app.use(cors());
+app.use(express.static(path.resolve(__dirname, 'client/build')));
 
 app.locals.title = 'Watercooler';
 
-app.get('/', (request, response) => {
-  response.sendFile(path.join(__dirname + '/client/public/index.html'));
+app.get('*', function(request, response) {
+  response.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
 });
 
 const server = http.createServer(app)
