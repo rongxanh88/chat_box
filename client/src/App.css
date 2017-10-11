@@ -16,7 +16,7 @@
 .App-window {
   display: flex;
   flex-direction: column;
-  margin-top: 25px;
+  margin-top: 5px;
   width: 360px;
   border-radius: 5px;
   overflow: hidden;
